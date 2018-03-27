@@ -29,7 +29,7 @@ export class AppLogin {
     //     }
     //   }
     // );
-    this.authenticationService.login(this.model.username, this.model.password);
+    this.authenticationService.login(this.model.username, this.model.password).subscribe();
     this.router.navigate(['/main']);
   }
 }

@@ -9,10 +9,13 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AppLogout} from "./logout";
 import {AppLogin} from "./login";
 import {AuthenticationService} from "./services";
+import {AppAssignTask} from './assign-tasks';
+import {AppEmployeesReports} from './employees-reports';
+import {AppMyReports} from './my-reports';
 
 @NgModule({
   imports: [BrowserModule, routing, FormsModule, HttpClientModule],
-  declarations: [AppComponent, AppMainpage, AppLogin, AppLogout],
+  declarations: [AppComponent, AppMainpage, AppLogin, AppLogout, AppAssignTask, AppEmployeesReports, AppMyReports],
   providers: [AuthGuard, AuthenticationService, HttpClient],
   bootstrap: [AppComponent]
 })
