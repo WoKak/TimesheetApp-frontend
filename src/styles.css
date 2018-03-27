@@ -1,1 +1,39 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  text-align: center;
+  font-family: "Comic Sans MS";
+}
+
+ul {
+  display: inline;
+  border: 5px #000 solid;
+  border-radius: 20px;
+  background-color: #e2f31c;
+}
+
+li {
+  display: inline;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+  font-family: "Comic Sans MS";
+  font-size: larger;
+}
+
+a:hover {
+  color: #696969;
+}
+
+#lgn_btn {
+  border: 1px #000 solid;
+  border-radius: 20px;
+  font-family: "Comic Sans MS";
+  background-color: #e2f31c;
+}
+
+#lgn_btn:hover {
+  color: #696969;
+}
