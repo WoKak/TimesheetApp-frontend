@@ -5,4 +5,36 @@
   <li><a>|</a></li>
   <li (click)="logout()"><a [routerLink]="['/logout']">Wyloguj</a></li>
 </ul>
-<p>My reports</p>
+<br/>
+<br/>
+<form>
+      <tr>
+        <th *ngFor="let weekday of weekdays">{{weekday}}</th>
+      </tr>
+      <tr *ngFor="let task of timesheet.tasks">
+        <td>
+          <p>{{task.title}}</p>
+          <p>Limit czasowy: {{task.time_limit}} godzin</p>
+        </td>
+        <td *ngFor="let track of task.tracked">
+          <br/>
+          <textarea rows="1" cols="30" class="time_tracked">{{track.tracked_time}}</textarea>
+          <textarea rows="8" cols="30">{{track.description}}</textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Wybierz tydzień:
+          <input type="button" value="<-" class="button" (click)="fetchPrevTimesheet()">
+          <input type="text" value="{{timesheet.week}}" size="1">
+          <input type="button" value="->" class="button" (click)="fetchNextTimesheet()">
+        </td>
+        <td>
+          <input type="submit" value="Zapisz" class="button" (click)="fetchTimesheet()"/>
+          /
+          <input type="submit" value="Wyślij" class="button" (click)="fetchTimesheet()"/>
+        </td>
+      </tr>
+      <br/>
+</form>
+

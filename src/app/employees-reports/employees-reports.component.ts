@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
+import {AuthenticationService} from '../services';
 
 @Component({
   moduleId: module.id,
@@ -12,7 +13,46 @@ export class AppEmployeesReports {
 
   model: any = {};
   token: string;
+  timesheet: any;
+  weekdays: string[] = [" ", "pon", "wt", "śr", "czw", "pt"];
+  employees: any;
 
-  constructor() {
+  constructor(private authService: AuthenticationService) {
+    this.fetchTimesheet();
+    this.fetchEmployees();
+  }
+
+  fetchTimesheet() {
+
+    this.authService.fetchTimesheet().subscribe(
+      data => {
+        this.timesheet = data;
+      }
+    );
+  }
+
+  fetchEmployees() {
+
+    this.authService.fetchEmployees().subscribe(
+      data => {
+        this.employees = data.employees;
+      }
+    );
+  }
+
+  fetchPrevTimesheet() {
+
+  }
+
+  fetchNextTimesheet() {
+
+  }
+
+  decline_timesheet() {
+
+  }
+
+  accept_timesheet() {
+
   }
 }

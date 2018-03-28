@@ -32,7 +32,7 @@ export class AuthenticationService {
         const response = JSON.parse(JSON.stringify(data));
         this.currentUser = response.username;
         this.role = response.role;
-        //this.token = response.token;
+        this.token = response.token;
         //return response.token;
       }
     );
@@ -59,14 +59,46 @@ export class AuthenticationService {
 
   isAuthenticated(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-    if (state.url == "/my-reports" && this.role == "employee") {
-      return true;
-    } else if (state.url == "/employees-reports" && this.role == "employer") {
-      return true;
-    } else if (state.url == "/assign-tasks" && this.role == "employer") {
-      return true;
-    } else {
-      return false;
-    }
+    // if (state.url == "/my-reports" && this.role == "employee") {
+    //   return true;
+    // } else if (state.url == "/employees-reports" && this.role == "employer") {
+    //   return true;
+    // } else if (state.url == "/assign-tasks" && this.role == "employer") {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
+
+    return true;
+  }
+
+  fetchTimesheet() {
+
+    return this.http.get(
+      'http://localhost:4200/assets/json/timesheet.json'
+      //{username: username, password: password},
+      // {headers: httpHeaders}
+    ).map(
+      data => {
+        //const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        const response = JSON.parse(JSON.stringify(data));
+        return response;
+      }
+    );
+  }
+
+  fetchEmployees() {
+
+    return this.http.get(
+      'http://localhost:4200/assets/json/employees.json'
+      //{username: username, password: password},
+      // {headers: httpHeaders}
+    ).map(
+      data => {
+        //const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        const response = JSON.parse(JSON.stringify(data));
+        return response;
+      }
+    );
   }
 }

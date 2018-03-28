@@ -27,13 +27,26 @@ a:hover {
   color: #696969;
 }
 
-#lgn_btn {
+.button {
   border: 1px #000 solid;
   border-radius: 20px;
   font-family: "Comic Sans MS";
   background-color: #e2f31c;
 }
 
-#lgn_btn:hover {
+.button:hover {
   color: #696969;
+}
+
+td {
+  height: 60px;
+  width: 250px;
+  border: 1px #000 solid;
+}
+
+th {
+  height: 60px;
+  width: 250px;
+  border: 1px #000 solid;
+  margin-top: 10px;
 }
