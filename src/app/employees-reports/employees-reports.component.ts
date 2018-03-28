@@ -14,7 +14,7 @@ export class AppEmployeesReports {
   model: any = {};
   token: string;
   timesheet: any;
-  weekdays: string[] = [" ", "pon", "wt", "śr", "czw", "pt"];
+  weekdays: string[] = [" ", "poniedziałek", "wtorek", "środa", "czwartek", "piątek"];
   employees: any;
 
   constructor(private authService: AuthenticationService) {

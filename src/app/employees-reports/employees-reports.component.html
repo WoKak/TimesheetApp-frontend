@@ -1,46 +1,73 @@
-<ul id="lst">
-  <li><a [routerLink]="['/my-reports']">Moje raporty</a></li>
-  <li><a [routerLink]="['/employees-reports']">Raporty pracowników</a></li>
-  <li><a [routerLink]="['/assign-tasks']">Przydziel zadania</a></li>
-  <li><a>|</a></li>
-  <li (click)="logout()"><a [routerLink]="['/logout']">Wyloguj</a></li>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <div class="alert alert-info">
+      <a class="nav-link alert-info" [routerLink]="['/my-reports']">Moje raporty</a>
+    </div>
+  </li>
+  <li class="nav-item">
+    <div class="alert alert-info">
+      <a class="nav-link alert-info" [routerLink]="['/employees-reports']">Raporty pracowników</a>
+    </div>
+  </li>
+  <li class="nav-item">
+    <div class="alert alert-info">
+      <a class="nav-link alert-info" [routerLink]="['/assign-tasks']">Przydziel zadania</a>
+    </div>
+  </li>
+  <li (click)="logout()" class="nav-item">
+    <div class="alert alert-info">
+      <a class="nav-link alert-info" [routerLink]="['/logout']">Wyloguj</a>
+    </div>
+  </li>
 </ul>
-<br/>
-<br/>
 <form>
-  <tr>
-    <th *ngFor="let weekday of weekdays">{{weekday}}</th>
-  </tr>
-  <tr *ngFor="let task of timesheet.tasks">
-    <td>
-      <p>{{task.title}}</p>
-      <p>Limit czasowy: {{task.time_limit}} godzin</p>
-    </td>
-    <td *ngFor="let track of task.tracked">
-      <br/>
-      <p rows="1" cols="30" class="time_tracked">{{track.tracked_time}}</p>
-      <p rows="8" cols="30">{{track.description}}</p>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Wybierz pracownika:
-      <select>
-        <option *ngFor="let employee of employees">{{employee.username}}</option>
-      </select>
-      <input type="submit" value="Wczytaj" class="button" (click)="fetchTimesheet()"/>
-    </td>
-    <td>
-      Wybierz tydzień:
-      <input type="button" value="<-" class="button" (click)="fetchPrevTimesheet()">
-      <input type="text" value="{{timesheet.week}}" size="1">
-      <input type="button" value="->" class="button" (click)="fetchNextTimesheet()">
-    </td>
-    <td>
-      <input type="submit" value="Akceptuj" class="button" (click)="accept_timesheet()"/>
-      /
-      <input type="submit" value="Odrzuć" class="button" (click)="decline_timesheet()"/>
-    </td>
-  </tr>
-  <br/>
+  <table class="table table-bordered">
+    <thead class="thead-light">
+    <tr>
+      <th *ngFor="let weekday of weekdays" class="font-weight-bold">{{weekday}}</th>
+    </tr>
+    </thead>
+    <tr *ngFor="let task of timesheet.tasks">
+      <td>
+        <p class="font-weight-bold">{{task.title}}</p>
+        <p class="font-weight-light">Limit: {{task.time_limit}} h</p>
+      </td>
+      <td *ngFor="let track of task.tracked">
+        <br/>
+        <p rows="1" cols="30" class="time_tracked">{{track.tracked_time}} h</p>
+        <p rows="8" cols="30">{{track.description}}</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Wybierz pracownika:
+        <select class="form-control">
+          <option *ngFor="let employee of employees">{{employee.username}}</option>
+        </select>
+      </td>
+      <td>
+        <input type="submit" value="Wczytaj" class="btn btn-info" (click)="fetchTimesheet()"/>
+      </td>
+      <td>
+        Wybierz tydzień:
+      </td>
+      <td>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <button type="button" class="btn btn-info" (click)="fetchPrevTimesheet()"><<</button>
+          </div>
+          <input type="text" value="{{timesheet.week}}" size="1" class="form-control text-center">
+          <div class="input-group-append">
+            <button type="button" class="btn btn-info" (click)="fetchNextTimesheet()">>></button>
+          </div>
+        </div>
+      </td>
+      <td>
+        <input type="submit" value="Zapisz" class="btn btn-info" (click)="fetchTimesheet()"/>
+      </td>
+      <td>
+        <input type="submit" value="Wyślij" class="btn btn-info" (click)="fetchTimesheet()"/>
+      </td>
+    </tr>
+  </table>
 </form>

@@ -14,7 +14,7 @@ export class AppMyReports {
   model: any = {};
   token: string;
   timesheet: any;
-  weekdays: string[] = [" ", "pon", "wt", "śr", "czw", "pt"];
+  weekdays: string[] = [" ", "poniedziałek", "wtorek", "środa", "czwartek", "piątek"];
 
   constructor(private authService: AuthenticationService) {
     this.fetchTimesheet();

@@ -1,7 +1,21 @@
-<form>
-  <input type="text" placeholder="username" [(ngModel)]="model.username" name="username"/>
-  <br/>
-  <input type="password" placeholder="password" [(ngModel)]="model.password" name="password"/>
-  <br/>
-  <input type="submit" value="login" class="button" (click)="login()"/>
-</form>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+    </div>
+    <div class="col-sm">
+      <form>
+        <div class="form-group">
+          <label for="username">Nazwa uzytkownika:</label>
+          <input type="text" id="username" [(ngModel)]="model.username" name="username" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label for="password">Hasło:</label>
+          <input type="password" id="password" [(ngModel)]="model.password" name="password" class="form-control"/>
+        </div>
+        <input type="submit" value="Zaloguj" class="btn btn-info" (click)="login()"/>
+      </form>
+    </div>
+    <div class="col-sm">
+    </div>
+  </div>
+</div>
