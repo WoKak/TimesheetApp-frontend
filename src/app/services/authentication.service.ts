@@ -101,4 +101,18 @@ export class AuthenticationService {
       }
     );
   }
+
+  fetchTasks() {
+    return this.http.get(
+      'http://localhost:4200/assets/json/tasks.json'
+      //{username: username, password: password},
+      // {headers: httpHeaders}
+    ).map(
+      data => {
+        //const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        const response = JSON.parse(JSON.stringify(data));
+        return response;
+      }
+    );
+  }
 }

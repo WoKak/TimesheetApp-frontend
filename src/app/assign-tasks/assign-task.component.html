@@ -20,3 +20,47 @@
     </div>
   </li>
 </ul>
+<br/>
+<div class="container">
+  <div class="row">
+    <div class="col-xl">
+      <p class="font-weight-bold">Lista zadań:</p>
+      <form>
+        <table class="table table-bordered">
+          <thead class="thead-light">
+          <tr>
+            <th>ID zadania</th>
+            <th>Zadanie</th>
+            <th>Czas na zadanie</th>
+            <th>Przypisani pracownicy</th>
+          </tr>
+          </thead>
+          <tr *ngFor="let task of tasks">
+            <td>
+              <input type="text" readonly class="form-control-plaintext" value={{task.task_id}}>
+            </td>
+            <td>
+              <input type="text" readonly class="form-control-plaintext" value={{task.task_name}}>
+            </td>
+            <td>
+              <input type="text" class="form-control" value={{task.task_time}}>
+            </td>
+            <td>
+              <select class="custom-select" multiple>
+                <option *ngFor="let employee of employees">{{employee.username}}</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+        <input type="submit" value="Zapisz" class="btn btn-info"/>
+      </form>
+    </div>
+    <div class="col-">
+      <button type="button" class="btn btn-info btn-block">Dodaj zadanie</button>
+      <br/>
+      <button type="button" class="btn btn-info btn-block">Dodaj pracownika</button>
+      <br/>
+      <button type="button" class="btn btn-outline-info btn-block">Przejdź do raportów</button>
+    </div>
+  </div>
+</div>

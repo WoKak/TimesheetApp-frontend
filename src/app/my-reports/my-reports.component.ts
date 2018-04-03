@@ -36,4 +36,8 @@ export class AppMyReports {
   fetchNextTimesheet() {
 
   }
+
+  send() {
+    console.log(this.timesheet);
+  }
 }

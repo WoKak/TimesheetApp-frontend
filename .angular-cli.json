@@ -12,7 +12,8 @@
         "favicon.ico",
         { "glob": "user.json", "input": "./", "output": "./assets/" },
         { "glob": "timesheet.json", "input": "./", "output": "./assets/" },
-        { "glob": "employees.json", "input": "./", "output": "./assets/" }
+        { "glob": "employees.json", "input": "./", "output": "./assets/" },
+        { "glob": "tasks.json", "input": "./", "output": "./assets/" }
       ],
       "index": "index.html",
       "main": "main.ts",

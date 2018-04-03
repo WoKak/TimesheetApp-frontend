@@ -1,0 +1,20 @@
+{
+  "tasks": [
+    {
+      "task_id": 1,
+      "task_name": "fancy todo",
+      "task_time": 16,
+      "assigned_employees": [
+        {"employee": "jan.kowalski"}, {"employee": "ada.toniewypada"}
+      ]
+    },
+    {
+      "task_id": 10,
+      "task_name": "even more fancy todo",
+      "task_time": 24,
+      "assigned_employees": [
+        {"employee": "jan.kowalski"}
+      ]
+    }
+  ]
+}
