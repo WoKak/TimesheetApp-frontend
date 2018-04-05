@@ -40,18 +40,18 @@
     </tr>
     <tr>
       <td>
-        Wybierz pracownika:
-        <select class="form-control">
-          <option *ngFor="let employee of employees">{{employee.username}}</option>
-        </select>
+        <p>Raport pracownika:</p>
+        <p>{{timesheet.workername}}</p>
       </td>
       <td>
+        Wybierz pracownika:
+        <select class="form-control" id="worker">
+          <option *ngFor="let employee of employees">{{employee.username}}</option>
+        </select>
         <input type="submit" value="Wczytaj" class="btn btn-info" (click)="fetchTimesheet()"/>
       </td>
       <td>
-        Wybierz tydzień:
-      </td>
-      <td>
+        <p>Wybierz tydzień:</p>
         <div class="input-group">
           <div class="input-group-prepend">
             <button type="button" class="btn btn-outline-info" (click)="fetchPrevTimesheet()"><<</button>
@@ -63,10 +63,8 @@
         </div>
       </td>
       <td>
-        <input type="submit" value="Zaakceptuj" class="btn btn-info" (click)="fetchTimesheet()"/>
-      </td>
-      <td>
-        <input type="submit" value="Odrzuć" class="btn btn-info" (click)="fetchTimesheet()"/>
+        <input type="submit" value="Zaakceptuj" class="btn btn-info" (click)="accept_timesheet()"/>
+        <input type="submit" value="Odrzuć" class="btn btn-outline-info" (click)="decline_timesheet()"/>
       </td>
     </tr>
   </table>

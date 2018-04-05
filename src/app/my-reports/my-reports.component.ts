@@ -22,7 +22,7 @@ export class AppMyReports {
 
   fetchTimesheet() {
 
-    this.authService.fetchTimesheet().subscribe(
+    this.authService.fetchTimesheet(14, 2008, 'jan.kowalski').subscribe(
       data => {
         this.timesheet = data;
       }

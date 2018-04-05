@@ -5,7 +5,6 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 
 
-
 @Injectable()
 export class BackendService {
 
@@ -72,7 +71,7 @@ export class BackendService {
     return true;
   }
 
-  fetchTimesheet() {
+  fetchTimesheet(week: any, year: any, worker: any) {
 
     return this.http.get(
       'http://localhost:4200/assets/json/timesheet.json'
@@ -80,8 +79,23 @@ export class BackendService {
       // {headers: httpHeaders}
     ).map(
       data => {
-        //const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
         const response = JSON.parse(JSON.stringify(data));
+        return response;
+      }
+    );
+  }
+
+  fetchTimesheetByEmployer(week: any, year: any, worker: any) {
+
+    let httpHeaders = new HttpHeaders()
+      .set('Access-Control-Allow-Origin', 'https://localhost:4200')
+      .set('Token', this.token);
+
+    let url = 'https://localhost:5000/timesheet/fetch-timesheet/' + worker + '/' + week + '/' + year;
+
+    return this.http.get(url, {headers: httpHeaders}).map(
+      data => {
+        const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
         return response;
       }
     );
@@ -91,8 +105,7 @@ export class BackendService {
 
     return this.http.get(
       'http://localhost:4200/assets/json/employees.json'
-      //{username: username, password: password},
-      // {headers: httpHeaders}
+      // ,{headers: httpHeaders}
     ).map(
       data => {
         //const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
@@ -111,6 +124,38 @@ export class BackendService {
       data => {
         //const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
         const response = JSON.parse(JSON.stringify(data));
+        return response;
+      }
+    );
+  }
+
+  decline_timesheet(id_tmsht: any) {
+
+    let httpHeaders = new HttpHeaders()
+      .set('Access-Control-Allow-Origin', 'https://localhost:4200')
+      .set('Token', this.token);
+
+    let url = 'https://localhost:5000/timesheet/decline-timesheet/' + id_tmsht;
+
+    return this.http.get(url, {headers: httpHeaders}).map(
+      data => {
+        const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        return response;
+      }
+    );
+  }
+
+  accept_timesheet(id_tmsht: any) {
+
+    let httpHeaders = new HttpHeaders()
+      .set('Access-Control-Allow-Origin', 'https://localhost:4200')
+      .set('Token', this.token);
+
+    let url = 'https://localhost:5000/timesheet/accept-timesheet/' + id_tmsht;
+
+    return this.http.get(url, {headers: httpHeaders}).map(
+      data => {
+        const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
         return response;
       }
     );
