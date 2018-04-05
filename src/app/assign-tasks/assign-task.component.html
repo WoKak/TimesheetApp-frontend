@@ -29,7 +29,7 @@
         <table class="table table-bordered">
           <thead class="thead-light">
           <tr>
-            <th>ID zadania</th>
+            <th>ID</th>
             <th>Zadanie</th>
             <th>Czas na zadanie</th>
             <th>Przypisani pracownicy</th>
@@ -37,10 +37,10 @@
           </thead>
           <tr *ngFor="let task of tasks">
             <td>
-              <input type="text" readonly class="form-control-plaintext" value={{task.task_id}}>
+              <p>{{task.task_id}}</p>
             </td>
             <td>
-              <input type="text" readonly class="form-control-plaintext" value={{task.task_name}}>
+              <p>{{task.task_name}}</p>
             </td>
             <td>
               <input type="text" class="form-control" value={{task.task_time}}>
