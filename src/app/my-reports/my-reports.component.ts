@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
-import {AuthenticationService} from '../services';
+import {BackendService} from '../services';
 
 @Component({
   moduleId: module.id,
@@ -16,7 +16,7 @@ export class AppMyReports {
   timesheet: any;
   weekdays: string[] = [" ", "poniedziałek", "wtorek", "środa", "czwartek", "piątek"];
 
-  constructor(private authService: AuthenticationService) {
+  constructor(private authService: BackendService) {
     this.fetchTimesheet();
   }
 

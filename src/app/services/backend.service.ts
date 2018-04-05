@@ -7,7 +7,7 @@ import {ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 
 
 @Injectable()
-export class AuthenticationService {
+export class BackendService {
 
   currentUser: string;
   token: any;

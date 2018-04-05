@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthenticationService} from '../services';
+import {BackendService} from '../services';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
@@ -15,7 +15,7 @@ export class AppLogin {
   model: any = {};
   token: string;
 
-  constructor(private router: Router, private authenticationService: AuthenticationService) {
+  constructor(private router: Router, private authenticationService: BackendService) {
   }
 
   login() {

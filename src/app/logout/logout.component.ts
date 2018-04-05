@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AuthenticationService} from "../services";
+import {BackendService} from "../services";
 
 
 @Component({
@@ -9,7 +9,7 @@ import {AuthenticationService} from "../services";
 })
 export class AppLogout {
 
-  constructor(private authService: AuthenticationService) {
+  constructor(private authService: BackendService) {
 
     // this.authService.logout().subscribe(
     //   data => {

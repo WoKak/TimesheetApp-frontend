@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AuthenticationService} from "../services";
+import {BackendService} from "../services";
 import {Router} from "@angular/router";
 
 @Component({
@@ -11,6 +11,6 @@ export class AppMainpage {
 
   public tweets: any;
 
-  constructor(private authService: AuthenticationService, private router: Router) {
+  constructor(private authService: BackendService, private router: Router) {
   }
 }

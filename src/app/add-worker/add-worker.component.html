@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+    </div>
+    <div class="col-sm">
+      <form>
+        <div class="form-group">
+          <label for="task-name">Zadanie:</label>
+          <input type="text" id="task-name" [(ngModel)]="model.task_name" name="task_name" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label for="worker-name">Pracownik:</label>
+          <input type="text" id="worker-name" [(ngModel)]="model.worker_name" name="worker_name" class="form-control"/>
+        </div>
+        <input type="submit" value="Dodaj" class="btn btn-info" (click)="add()"/>
+        <button [routerLink]="['/assign-tasks']" class="btn btn-outline-info">Powrót</button>
+      </form>
+    </div>
+    <div class="col-sm">
+    </div>
+  </div>
+</div>
