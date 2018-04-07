@@ -73,7 +73,7 @@ export class AppEmployeesReports {
 
     this.backendService.decline_timesheet(this.timesheet.id_tmsht).subscribe(
       data => {
-        console.log("Timesheet odrzucony");
+        console.log("Raport odrzucony");
       }
     );
   }
@@ -82,7 +82,7 @@ export class AppEmployeesReports {
 
     this.backendService.accept_timesheet(this.timesheet.id_tmsht).subscribe(
       data => {
-        console.log("Timesheet zaakceptowany");
+        console.log("Raport zaakceptowany");
       }
     );
   }

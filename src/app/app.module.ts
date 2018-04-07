@@ -13,13 +13,12 @@ import {AppAssignTask} from './assign-tasks';
 import {AppEmployeesReports} from './employees-reports';
 import {AppMyReports} from './my-reports';
 import {AppAddTask} from './add-task';
-import {AppAddWorker} from './add-worker';
 
 @NgModule({
   imports: [BrowserModule, routing, FormsModule, HttpClientModule],
   declarations: [
     AppComponent, AppMainpage, AppLogin, AppLogout, AppAssignTask,
-    AppEmployeesReports, AppMyReports, AppAddTask, AppAddWorker
+    AppEmployeesReports, AppMyReports, AppAddTask
   ],
   providers: [AuthGuard, BackendService, HttpClient],
   bootstrap: [AppComponent]

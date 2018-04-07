@@ -32,36 +32,29 @@
             <th>ID</th>
             <th>Zadanie</th>
             <th>Czas na zadanie</th>
-            <th>Przypisani pracownicy</th>
+            <th>Przypisany pracownik</th>
           </tr>
           </thead>
           <tr *ngFor="let task of tasks">
             <td>
-              <p>{{task.task_id}}</p>
+              <p class="ids">{{task.task_id}}</p>
             </td>
             <td>
-              <p>{{task.task_name}}</p>
+              <p class="names">{{task.task_name}}</p>
             </td>
             <td>
-              <input type="text" class="form-control" value={{task.task_time}}>
+              <input type="text" class="form-control times" value={{task.task_time}}>
             </td>
             <td>
-          <tr *ngFor="let employee of task.assigned_employees">
-            <td><input type="text" class="form-control" value={{employee.employee}}></td>
-            <td>
-              <button type="button" class="btn btn-danger" (click)="removeWorker()">x</button>
+              <input type="text" class="form-control workers" value={{task.employee}}>
             </td>
-          </tr>
-          </td>
           </tr>
         </table>
-        <input type="submit" value="Zapisz" class="btn btn-info"/>
+        <input type="submit" value="Zapisz" class="btn btn-info" (click)="save()"/>
       </form>
     </div>
     <div class="col-">
       <button type="button" class="btn btn-info btn-block" [routerLink]="['/add-task']">Dodaj zadanie</button>
-      <br/>
-      <button type="button" class="btn btn-info btn-block" [routerLink]="['/add-worker']">Dodaj pracownika do zadania</button>
       <br/>
       <button type="button" class="btn btn-outline-info btn-block" [routerLink]="['/employees-reports']">Przejdź do raportów</button>
     </div>

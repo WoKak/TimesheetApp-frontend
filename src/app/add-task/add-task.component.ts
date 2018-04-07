@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import {BackendService} from '../services';
+import {Router} from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -12,11 +13,17 @@ import {BackendService} from '../services';
 export class AppAddTask {
 
   model: any = {};
-  token: string;
-  employees: any;
-  tasks: any;
 
-  constructor(private authService: BackendService) {
+  constructor(private backendService: BackendService, private router: Router) {
 
+  }
+
+  add() {
+    this.backendService.addTask(this.model.task_name, this.model.task_time, this.model.employee).subscribe(
+      data => {
+        console.log("Task added");
+        this.router.navigate(['/main']);
+      }
+    );
   }
 }

@@ -37,7 +37,7 @@ export class AppMyReports {
 
   }
 
-  send() {
+  save() {
     console.log(this.timesheet);
   }
 }

@@ -58,6 +58,8 @@ export class BackendService {
 
   isAuthenticated(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
+    // This is ok, for dev purposes commented
+
     // if (state.url == "/my-reports" && this.role == "employee") {
     //   return true;
     // } else if (state.url == "/employees-reports" && this.role == "employer") {
@@ -154,6 +156,45 @@ export class BackendService {
     let url = 'https://localhost:5000/timesheet/accept-timesheet/' + id_tmsht;
 
     return this.http.get(url, {headers: httpHeaders}).map(
+      data => {
+        const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        return response;
+      }
+    );
+  }
+
+  addTask(taskName: any, taskTime: any, employee: any) {
+    let httpHeaders = new HttpHeaders()
+      .set('Access-Control-Allow-Origin', 'https://localhost:4200')
+      .set('Token', this.token);
+
+    let url = 'https://localhost:5000/task/add-task';
+
+    return this.http.post(
+      url,
+      {task_name: taskName, task_time: taskTime, employee: employee},
+      {headers: httpHeaders}
+    ).map(
+      data => {
+        const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        return response;
+      }
+    );
+  }
+
+  saveTasks(tmpIds: any[], tmpNames: any[], tmpTimes: any[], tmpWorkers: any[]) {
+
+    let httpHeaders = new HttpHeaders()
+      .set('Access-Control-Allow-Origin', 'https://localhost:4200')
+      .set('Token', this.token);
+
+    let url = 'https://localhost:5000/task/update-tasks';
+
+    return this.http.post(
+      url,
+      {ids: tmpIds, names: tmpNames, times: tmpTimes, workers: tmpWorkers},
+      {headers: httpHeaders}
+    ).map(
       data => {
         const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
         return response;
