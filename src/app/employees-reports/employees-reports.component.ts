@@ -50,7 +50,7 @@ export class AppEmployeesReports {
     let result = this.getWeekNumber(new Date());
     let worker = this.getSelectedWorker();
 
-    this.backendService.fetchTimesheet(this.timesheet.week - 1, result[0], worker).subscribe(
+    this.backendService.fetchTimesheetByEmployer(this.timesheet.week - 1, result[0], worker).subscribe(
       data => {
         this.timesheet = data;
       }
@@ -62,7 +62,7 @@ export class AppEmployeesReports {
     let result = this.getWeekNumber(new Date());
     let worker = this.getSelectedWorker();
 
-    this.backendService.fetchTimesheet(this.timesheet.week + 1, result[0], worker).subscribe(
+    this.backendService.fetchTimesheetByEmployer(this.timesheet.week + 1, result[0], worker).subscribe(
       data => {
         this.timesheet = data;
       }

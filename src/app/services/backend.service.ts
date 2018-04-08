@@ -103,6 +103,22 @@ export class BackendService {
     );
   }
 
+  fetchTimesheetByEmployee(week: any, year: any) {
+
+    let httpHeaders = new HttpHeaders()
+      .set('Access-Control-Allow-Origin', 'https://localhost:4200')
+      .set('Token', this.token);
+
+    let url = 'https://localhost:5000/timesheet/fetch-timesheet/' + this.currentUser + '/' + week + '/' + year;
+
+    return this.http.get(url, {headers: httpHeaders}).map(
+      data => {
+        const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        return response;
+      }
+    );
+  }
+
   fetchEmployees() {
 
     return this.http.get(
@@ -193,6 +209,26 @@ export class BackendService {
     return this.http.post(
       url,
       {ids: tmpIds, names: tmpNames, times: tmpTimes, workers: tmpWorkers},
+      {headers: httpHeaders}
+    ).map(
+      data => {
+        const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        return response;
+      }
+    );
+  }
+
+  saveTimesheet(trackList: any[], timesheet: any) {
+
+    let httpHeaders = new HttpHeaders()
+      .set('Access-Control-Allow-Origin', 'https://localhost:4200')
+      .set('Token', this.token);
+
+    let url = 'https://localhost:5000/timesheet/save-timesheet';
+
+    return this.http.post(
+      url,
+      {task_descriptions: trackList, timesheet: timesheet},
       {headers: httpHeaders}
     ).map(
       data => {

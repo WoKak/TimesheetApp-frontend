@@ -32,10 +32,9 @@
         <p class="font-weight-bold">{{task.title}}</p>
         <p class="font-weight-light">Limit: {{task.time_limit}} h</p>
       </td>
-      <td *ngFor="let track of task.tracked">
-        <br/>
-        <textarea rows="1" cols="30" class="time_tracked" class="form-control">{{track.tracked_time}}</textarea>
-        <textarea rows="5" cols="30" class="form-control">{{track.description}}</textarea>
+      <td *ngFor="let track of task.tracked" class="tasks_table">
+        <textarea rows="1" cols="30" class="tracked_time form-control">{{track.tracked_time}}</textarea>
+        <textarea rows="5" cols="30" class="description form-control">{{track.description}}</textarea>
       </td>
     </tr>
     <tr>
