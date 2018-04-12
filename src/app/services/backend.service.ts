@@ -147,13 +147,15 @@ export class BackendService {
     );
   }
 
-  decline_timesheet(id_tmsht: any) {
+  decline_timesheet(id_tmsht: any, week: any, year: any) {
 
     let httpHeaders = new HttpHeaders()
       .set('Access-Control-Allow-Origin', 'https://localhost:4200')
       .set('Token', this.token);
 
-    let url = 'https://localhost:5000/timesheet/decline-timesheet/' + id_tmsht;
+    let url = 'https://localhost:5000/timesheet/decline-timesheet/' + id_tmsht + '/' + week + '/' + year;
+
+    console.log(url);
 
     return this.http.get(url, {headers: httpHeaders}).map(
       data => {
@@ -163,13 +165,13 @@ export class BackendService {
     );
   }
 
-  accept_timesheet(id_tmsht: any) {
+  accept_timesheet(id_tmsht: any, week: any, year: any) {
 
     let httpHeaders = new HttpHeaders()
       .set('Access-Control-Allow-Origin', 'https://localhost:4200')
       .set('Token', this.token);
 
-    let url = 'https://localhost:5000/timesheet/accept-timesheet/' + id_tmsht;
+    let url = 'https://localhost:5000/timesheet/accept-timesheet/' + id_tmsht + '/' + week + '/' + year;
 
     return this.http.get(url, {headers: httpHeaders}).map(
       data => {
@@ -184,7 +186,7 @@ export class BackendService {
       .set('Access-Control-Allow-Origin', 'https://localhost:4200')
       .set('Token', this.token);
 
-    let url = 'https://localhost:5000/task/add-task';
+    let url = 'https://localhost:5000/task/add-task/' + this.currentUser;
 
     return this.http.post(
       url,

@@ -13,8 +13,6 @@ declare var $: any;
 
 export class AppEmployeesReports {
 
-  model: any = {};
-  token: string;
   timesheet: any;
   weekdays: string[] = [" ", "poniedziałek", "wtorek", "środa", "czwartek", "piątek"];
   employees: any;
@@ -71,7 +69,7 @@ export class AppEmployeesReports {
 
   decline_timesheet() {
 
-    this.backendService.decline_timesheet(this.timesheet.id_tmsht).subscribe(
+    this.backendService.decline_timesheet(this.timesheet.id_tmsht, this.timesheet.week, this.timesheet.year).subscribe(
       data => {
         console.log("Raport odrzucony");
       }
@@ -80,7 +78,7 @@ export class AppEmployeesReports {
 
   accept_timesheet() {
 
-    this.backendService.accept_timesheet(this.timesheet.id_tmsht).subscribe(
+    this.backendService.accept_timesheet(this.timesheet.id_tmsht, this.timesheet.week, this.timesheet.year).subscribe(
       data => {
         console.log("Raport zaakceptowany");
       }
