@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "ng": "ng",
     "start": "ng serve",
+    "code": "ng serve --ssl 1 --ssl-key \"D:\\localhost.key\" --ssl-cert \"D:\\localhost.crt\"",
+    "ng": "ng",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
