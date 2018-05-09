@@ -18,14 +18,17 @@ export class AppEmployeesReports {
   employees: any;
 
   constructor(private backendService: BackendService) {
-    this.fetchTimesheet();
     this.fetchEmployees();
+    this.fetchTimesheet();
   }
 
   fetchTimesheet() {
 
     let result = this.getWeekNumber(new Date());
     let worker = this.getSelectedWorker();
+
+    if (worker === "")
+      worker = "mlody";
 
     this.backendService.fetchTimesheetByEmployer(result[1], result[0], worker).subscribe(
       data => {

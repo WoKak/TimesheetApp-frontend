@@ -17,6 +17,6 @@ export class AppLogout {
     //   }
     // );
 
-    this.authService.logout();
+    this.authService.logout().subscribe();
   }
 }

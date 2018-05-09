@@ -66,6 +66,8 @@ export class BackendService {
       return true;
     } else if (state.url == "/assign-tasks" && this.role == "employer") {
       return true;
+    } else if (state.url == "/add-task" && this.role == "employer") {
+      return true;
     } else {
       return false;
     }
@@ -202,8 +204,7 @@ export class BackendService {
       {headers: httpHeaders}
     ).map(
       data => {
-        const response = JSON.parse(JSON.stringify(data));
-        return response;
+        return "OK";
       }
     );
   }

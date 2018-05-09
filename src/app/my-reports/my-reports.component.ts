@@ -45,7 +45,7 @@ export class AppMyReports {
 
     let result = this.getWeekNumber(new Date());
 
-    this.backendService.fetchTimesheetByEmployee(this.timesheet.week + 1, result[0]).subscribe(
+    this.backendService.fetchTimesheetByEmployee(this.timesheet.week - (-1), result[0]).subscribe(
       data => {
         this.timesheet = data;
       }
