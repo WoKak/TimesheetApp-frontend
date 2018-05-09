@@ -27,8 +27,8 @@ export class BackendService {
       {headers: httpHeaders}
     ).map(
       data => {
-        const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
-        // const response = JSON.parse(JSON.stringify(data));
+        // const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        const response = JSON.parse(JSON.stringify(data));
         this.currentUser = response.username;
         this.role = response.role;
         this.token = response.token;
@@ -48,7 +48,7 @@ export class BackendService {
       {headers: httpHeaders}
     ).map(
       data => {
-        const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        const response = JSON.parse(JSON.stringify(data));
         this.token = '';
         this.currentUser = '';
         return response.user;
@@ -97,7 +97,7 @@ export class BackendService {
 
     return this.http.get(url, {headers: httpHeaders}).map(
       data => {
-        const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        const response = JSON.parse(JSON.stringify(data));
         return response;
       }
     );
@@ -113,7 +113,7 @@ export class BackendService {
 
     return this.http.get(url, {headers: httpHeaders}).map(
       data => {
-        const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        const response = JSON.parse(JSON.stringify(data));
         return response;
       }
     );
@@ -167,7 +167,7 @@ export class BackendService {
 
     return this.http.get(url, {headers: httpHeaders}).map(
       data => {
-        const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        const response = JSON.parse(JSON.stringify(data));
         return response;
       }
     );
@@ -183,7 +183,7 @@ export class BackendService {
 
     return this.http.get(url, {headers: httpHeaders}).map(
       data => {
-        const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        const response = JSON.parse(JSON.stringify(data));
         return response;
       }
     );
@@ -202,7 +202,7 @@ export class BackendService {
       {headers: httpHeaders}
     ).map(
       data => {
-        const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        const response = JSON.parse(JSON.stringify(data));
         return response;
       }
     );
@@ -222,7 +222,7 @@ export class BackendService {
       {headers: httpHeaders}
     ).map(
       data => {
-        const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        const response = JSON.parse(JSON.stringify(data));
         return response;
       }
     );
@@ -242,7 +242,7 @@ export class BackendService {
       {headers: httpHeaders}
     ).map(
       data => {
-        const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        const response = JSON.parse(JSON.stringify(data));
         return response;
       }
     );
