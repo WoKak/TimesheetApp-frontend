@@ -23,7 +23,7 @@ export class AppMyReports {
 
   fetchTimesheet() {
 
-    this.backendService.fetchTimesheet(14, 2008, "ada.toniewypada").subscribe(
+    this.backendService.fetchTimesheetByEmployee(14, 2008).subscribe(
       data => {
         this.timesheet = data;
       }

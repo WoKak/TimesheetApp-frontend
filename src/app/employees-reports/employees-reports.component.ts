@@ -27,7 +27,7 @@ export class AppEmployeesReports {
     let result = this.getWeekNumber(new Date());
     let worker = this.getSelectedWorker();
 
-    this.backendService.fetchTimesheet(result[1], result[0], worker).subscribe(
+    this.backendService.fetchTimesheetByEmployer(result[1], result[0], worker).subscribe(
       data => {
         this.timesheet = data;
       }

@@ -17,75 +17,75 @@ export class BackendService {
 
   login(username: string, password: string) {
 
-    // let httpHeaders = new HttpHeaders()
-    //   .set('Access-Control-Allow-Origin', 'https://localhost:4200')
-    //   .set('Token', '');
+    let httpHeaders = new HttpHeaders()
+      .set('Access-Control-Allow-Origin', 'https://localhost:4200')
+      .set('Token', '');
 
-    return this.http.get(
-      'http://localhost:4200/assets/json/user.json'
-      //{username: username, password: password},
-      // {headers: httpHeaders}
+    return this.http.post(
+      'https://localhost:5000/login',
+      {username: username, password: password},
+      {headers: httpHeaders}
     ).map(
       data => {
-        //const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
-        const response = JSON.parse(JSON.stringify(data));
+        const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        // const response = JSON.parse(JSON.stringify(data));
         this.currentUser = response.username;
         this.role = response.role;
         this.token = response.token;
-        //return response.token;
+        return response.token;
       }
     );
   }
 
   logout() {
-    // let httpHeaders = new HttpHeaders()
-    //   .set('Access-Control-Allow-Origin', 'https://localhost:4200')
-    //   .set('Token', this.token);
-    //
-    // return this.http.post(
-    //   'https://localhost:8443/auth/logout',
-    //   {username: this.currentUser, token: this.token},
-    //   {headers: httpHeaders}
-    // ).map(
-    //   data => {
-    //     const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
-    //     this.token = '';
-    //     return response.user;
-    //   }
-    // );
-    this.currentUser = '';
+    let httpHeaders = new HttpHeaders()
+      .set('Access-Control-Allow-Origin', 'https://localhost:4200')
+      .set('Token', this.token);
+
+    return this.http.post(
+      'https://localhost:5000/logout',
+      {username: this.currentUser, token: this.token},
+      {headers: httpHeaders}
+    ).map(
+      data => {
+        const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        this.token = '';
+        this.currentUser = '';
+        return response.user;
+      }
+    );
   }
 
   isAuthenticated(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
     // This is ok, for dev purposes commented
 
-    // if (state.url == "/my-reports" && this.role == "employee") {
-    //   return true;
-    // } else if (state.url == "/employees-reports" && this.role == "employer") {
-    //   return true;
-    // } else if (state.url == "/assign-tasks" && this.role == "employer") {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
+    if (state.url == "/my-reports" && this.role == "employee") {
+      return true;
+    } else if (state.url == "/employees-reports" && this.role == "employer") {
+      return true;
+    } else if (state.url == "/assign-tasks" && this.role == "employer") {
+      return true;
+    } else {
+      return false;
+    }
 
-    return true;
+    // return true;
   }
 
-  fetchTimesheet(week: any, year: any, worker: any) {
-
-    return this.http.get(
-      'http://localhost:4200/assets/json/timesheet.json'
-      //{username: username, password: password},
-      // {headers: httpHeaders}
-    ).map(
-      data => {
-        const response = JSON.parse(JSON.stringify(data));
-        return response;
-      }
-    );
-  }
+  // fetchTimesheet(week: any, year: any, worker: any) {
+  //
+  //   return this.http.get(
+  //     'https://localhost:4200/assets/json/timesheet.json'
+  //     //{username: username, password: password},
+  //     // {headers: httpHeaders}
+  //   ).map(
+  //     data => {
+  //       const response = JSON.parse(JSON.stringify(data));
+  //       return response;
+  //     }
+  //   );
+  // }
 
   fetchTimesheetByEmployer(week: any, year: any, worker: any) {
 
@@ -121,9 +121,13 @@ export class BackendService {
 
   fetchEmployees() {
 
+    let httpHeaders = new HttpHeaders()
+      .set('Access-Control-Allow-Origin', 'https://localhost:4200')
+      .set('Token', this.token);
+
     return this.http.get(
-      'http://localhost:4200/assets/json/employees.json'
-      // ,{headers: httpHeaders}
+      'https://localhost:5000/employee/fetch-employees',
+      {headers: httpHeaders}
     ).map(
       data => {
         //const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
@@ -134,10 +138,14 @@ export class BackendService {
   }
 
   fetchTasks() {
+
+    let httpHeaders = new HttpHeaders()
+      .set('Access-Control-Allow-Origin', 'https://localhost:4200')
+      .set('Token', this.token);
+
     return this.http.get(
-      'http://localhost:4200/assets/json/tasks.json'
-      //{username: username, password: password},
-      // {headers: httpHeaders}
+      'https://localhost:5000/task/fetch-tasks/' + this.currentUser,
+      {headers: httpHeaders}
     ).map(
       data => {
         //const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
