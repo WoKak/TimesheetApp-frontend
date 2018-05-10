@@ -88,7 +88,7 @@ export class BackendService {
   }
 
   // NEW
-  fetchTasksForEmployee() {
+  fetchTasksByEmployee() {
 
     let httpHeaders = new HttpHeaders()
       .set('Access-Control-Allow-Origin', 'https://localhost:4200')
@@ -134,14 +134,49 @@ export class BackendService {
       {headers: httpHeaders}
     ).map(
       data => {
-        //const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
         const response = JSON.parse(JSON.stringify(data));
         return response;
       }
     );
   }
 
-  fetchTasks() {
+  //NEW
+  fetchDetails(selectedTask: any) {
+
+    let httpHeaders = new HttpHeaders()
+      .set('Access-Control-Allow-Origin', 'https://localhost:4200')
+      .set('Token', this.token);
+
+    return this.http.post(
+      'https://localhost:5000/task/fetch-details',
+      {task: selectedTask},
+      {headers: httpHeaders}
+    ).map(
+      data => {
+        const response = JSON.parse(JSON.stringify(data));
+        return response;
+      }
+    );
+  }
+
+  //NEW
+  updateDetails(time: any, worker: any, selectedTask: any) {
+
+    let httpHeaders = new HttpHeaders()
+      .set('Access-Control-Allow-Origin', 'https://localhost:4200')
+      .set('Token', this.token);
+
+    return this.http.post(
+      'https://localhost:5000/task/update-details',
+      {task: selectedTask, time: time, worker: worker},
+      {headers: httpHeaders}
+    ).map(
+      data => {
+      }
+    );
+  }
+
+  fetchTasksByEmployer() {
 
     let httpHeaders = new HttpHeaders()
       .set('Access-Control-Allow-Origin', 'https://localhost:4200')

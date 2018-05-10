@@ -14,7 +14,6 @@ declare var $: any;
 
 export class AppMyReports {
 
-  days: string[] = ['poniedziałek', 'wtorek', 'środa', 'czwartek', 'piątek'];
   tasks: string[] = ['todo1', 'todo2', 'todo3'];
   model: any = {};
 
@@ -27,7 +26,7 @@ export class AppMyReports {
 
   fetchTasksForEmployee() {
 
-    this.backendService.fetchTasksForEmployee().subscribe(
+    this.backendService.fetchTasksByEmployee().subscribe(
       data => {
         this.tasks = data;
       }

@@ -43,8 +43,8 @@
     <form>
       <div *ngFor="let track of model.tracked" class="form-group">
         <p>{{track.day}}:</p>
-        <input type="number" [(ngModel)]="track.trackedTime" name="trackedTime" placeholder="czas">
-        <input type="text" [(ngModel)]="track.description" name="description" placeholder="opis">
+        <input type="number" [(ngModel)]="track.trackedTime" name="trackedTime" placeholder="czas" class="form-control">
+        <input type="text" [(ngModel)]="track.description" name="description" placeholder="opis" class="form-control">
       </div>
       <input type="submit" value="Wyślij raport" class="btn btn-info" (click)="sendReport()"/>
     </form>

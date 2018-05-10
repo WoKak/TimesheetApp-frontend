@@ -23,37 +23,18 @@
 <br/>
 <div class="container" onload="preselect()">
   <div class="row">
-    <div class="col-xl">
-      <p class="font-weight-bold">Lista zadań:</p>
-      <form>
-        <table class="table table-bordered">
-          <thead class="thead-light">
-          <tr>
-            <th>ID</th>
-            <th>Zadanie</th>
-            <th>Czas na zadanie</th>
-            <th>Przypisany pracownik</th>
-          </tr>
-          </thead>
-          <tr *ngFor="let task of tasks">
-            <td>
-              <p class="ids">{{task.task_id}}</p>
-            </td>
-            <td>
-              <p class="names">{{task.task_name}}</p>
-            </td>
-            <td>
-              <input type="text" class="form-control times" value={{task.task_time}}>
-            </td>
-            <td>
-              <input type="text" class="form-control workers" value={{task.employee}}>
-            </td>
-          </tr>
-        </table>
-        <input type="submit" value="Zapisz" class="btn btn-info" (click)="save()"/>
-      </form>
+    <div class="col">
+      <select class="form-control" id="task">
+        <option *ngFor="let task of tasks">{{task.id + ". " + task.name}}</option>
+      </select>
+      <input type="submit" value="Wyświetl szczegóły" class="btn btn-info" (click)="fetchDetails()"/>
     </div>
-    <div class="col-">
+    <div class="col">
+      <input type="text" [(ngModel)]="model.time" name="time" placeholder="czas" class="form-control">
+      <input type="text" [(ngModel)]="model.worker" name="worker" placeholder="pracownik" class="form-control">
+      <input type="submit" value="Zapisz zmiany" class="btn btn-info" (click)="updateDetails()"/>
+    </div>
+    <div class="col">
       <button type="button" class="btn btn-info btn-block" [routerLink]="['/add-task']">Dodaj zadanie</button>
       <br/>
       <button type="button" class="btn btn-outline-info btn-block" [routerLink]="['/employees-reports']">Przejdź do raportów</button>
