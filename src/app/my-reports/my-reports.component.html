@@ -20,42 +20,33 @@
     </div>
   </li>
 </ul>
-<form>
-  <table class="table table-bordered">
-    <thead class="thead-light">
-    <tr>
-      <th *ngFor="let weekday of weekdays" class="font-weight-bold">{{weekday}}</th>
-    </tr>
-    </thead>
-    <tr *ngFor="let task of timesheet.tasks">
-      <td>
-        <p class="font-weight-bold">{{task.title}}</p>
-        <p class="font-weight-light">Limit: {{task.time_limit}} h</p>
-      </td>
-      <td *ngFor="let track of task.tracked" class="tasks_table">
-        <textarea rows="1" cols="30" class="tracked_time form-control">{{track.tracked_time}}</textarea>
-        <textarea rows="5" cols="30" class="description form-control">{{track.description}}</textarea>
-      </td>
-    </tr>
-    <tr>
-      <td class="font-weight-bold">
-        Wybierz tydzień:
-      </td>
-      <td>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <button type="button" class="btn btn-outline-info" (click)="fetchPrevTimesheet()"><<</button>
-          </div>
-          <input type="text" value="{{timesheet.week}}" size="1" class="form-control text-center">
-          <div class="input-group-append">
-            <button type="button" class="btn btn-outline-info" (click)="fetchNextTimesheet()">>></button>
-          </div>
+<div class="row">
+  <div class="col">
+    <form>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <button type="button" class="btn btn-outline-info" (click)="decreaseWeek()"><<</button>
         </div>
-      </td>
-      <td>
-        <input type="submit" value="Zapisz" class="btn btn-info" (click)="save()"/>
-      </td>
-    </tr>
-  </table>
-</form>
-
+        <input type="text" [(ngModel)]="model.week" name="week" size="1" class="form-control text-center">
+        <div class="input-group-append">
+          <button type="button" class="btn btn-outline-info" (click)="increaseWeek()">>></button>
+        </div>
+      </div>
+      <select class="form-control" id="task">
+        <option *ngFor="let task of tasks">{{task}}</option>
+      </select>
+      <input type="submit" value="Pobierz raport" class="btn btn-info" (click)="fetchReport()"/>
+    </form>
+  </div>
+  <div class="col">
+    <p>Status: {{this.model.status}}</p>
+    <form>
+      <div *ngFor="let track of model.tracked" class="form-group">
+        <p>{{track.day}}:</p>
+        <input type="number" [(ngModel)]="track.trackedTime" name="trackedTime" placeholder="czas">
+        <input type="text" [(ngModel)]="track.description" name="description" placeholder="opis">
+      </div>
+      <input type="submit" value="Wyślij raport" class="btn btn-info" (click)="sendReport()"/>
+    </form>
+  </div>
+</div>

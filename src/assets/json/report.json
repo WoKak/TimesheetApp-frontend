@@ -1,0 +1,30 @@
+{
+  "tracked": [
+    {
+      "description": "fancy todo",
+      "trackedTime": 8,
+      "day": "poniedziałek"
+    },
+    {
+      "description": "fancy todo",
+      "trackedTime": 8,
+      "day": "wtorek"
+    },
+    {
+      "description": "fancy todo",
+      "trackedTime": 8,
+      "day": "środa"
+    },
+    {
+      "description": "fancy todo",
+      "trackedTime": 8,
+      "day": "czwartek"
+    },
+    {
+      "description": "fancy todo",
+      "trackedTime": 8,
+      "day": "piątek"
+    }
+  ],
+  "status": "zaakceptowany"
+}

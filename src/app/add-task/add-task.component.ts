@@ -19,11 +19,13 @@ export class AppAddTask {
   }
 
   add() {
+
     this.backendService.addTask(this.model.task_name, this.model.task_time, this.model.employee).subscribe(
       data => {
         console.log("Task added");
-        this.router.navigate(['/assign-tasks']);
       }
     );
+
+    this.router.navigate(['/assign-tasks']);
   }
 }

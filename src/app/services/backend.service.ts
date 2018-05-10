@@ -58,8 +58,6 @@ export class BackendService {
 
   isAuthenticated(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-    // This is ok, for dev purposes commented
-
     if (state.url == "/my-reports" && this.role == "employee") {
       return true;
     } else if (state.url == "/employees-reports" && this.role == "employer") {
@@ -71,23 +69,7 @@ export class BackendService {
     } else {
       return false;
     }
-
-    // return true;
   }
-
-  // fetchTimesheet(week: any, year: any, worker: any) {
-  //
-  //   return this.http.get(
-  //     'https://localhost:4200/assets/json/timesheet.json'
-  //     //{username: username, password: password},
-  //     // {headers: httpHeaders}
-  //   ).map(
-  //     data => {
-  //       const response = JSON.parse(JSON.stringify(data));
-  //       return response;
-  //     }
-  //   );
-  // }
 
   fetchTimesheetByEmployer(week: any, year: any, worker: any) {
 
@@ -105,13 +87,14 @@ export class BackendService {
     );
   }
 
-  fetchTimesheetByEmployee(week: any, year: any) {
+  // NEW
+  fetchTasksForEmployee() {
 
     let httpHeaders = new HttpHeaders()
       .set('Access-Control-Allow-Origin', 'https://localhost:4200')
       .set('Token', this.token);
 
-    let url = 'https://localhost:5000/timesheet/fetch-timesheet/' + this.currentUser + '/' + week + '/' + year;
+    let url = 'https://localhost:5000/task/fetch-tasks/' + this.currentUser;
 
     return this.http.get(url, {headers: httpHeaders}).map(
       data => {
@@ -129,6 +112,25 @@ export class BackendService {
 
     return this.http.get(
       'https://localhost:5000/employee/fetch-employees',
+      {headers: httpHeaders}
+    ).map(
+      data => {
+        //const response = JSON.parse(JSON.stringify(data['entity'], null, 4));
+        const response = JSON.parse(JSON.stringify(data));
+        return response;
+      }
+    );
+  }
+
+  // NEW
+  fetchWeeklyReportForTask(week: any, selectedTask: any, year: any) {
+
+    let httpHeaders = new HttpHeaders()
+      .set('Access-Control-Allow-Origin', 'https://localhost:4200')
+      .set('Token', this.token);
+
+    return this.http.get(
+      'https://localhost:5000/timesheet/fetch-task-report/' + this.currentUser + '/' + week + '/' + year + '/' + selectedTask,
       {headers: httpHeaders}
     ).map(
       data => {
@@ -229,23 +231,21 @@ export class BackendService {
     );
   }
 
-  saveTimesheet(trackList: any[], timesheet: any) {
+  //NEW
+  reportWeeklyReportForTask(week: any, selectedTask: any, tracked: any) {
 
     let httpHeaders = new HttpHeaders()
       .set('Access-Control-Allow-Origin', 'https://localhost:4200')
       .set('Token', this.token);
 
-    let url = 'https://localhost:5000/timesheet/save-timesheet';
+    let url = 'https://localhost:5000/timesheet/save-report';
 
     return this.http.post(
       url,
-      {task_descriptions: trackList, timesheet: timesheet},
+      {task_descriptions: tracked, week: week, selected_task: selectedTask, worker: this.currentUser},
       {headers: httpHeaders}
     ).map(
-      data => {
-        const response = JSON.parse(JSON.stringify(data));
-        return response;
-      }
+      data => {}
     );
   }
 }

@@ -12,23 +12,28 @@
       "tracked": [
         {
           "description": "fancy todo",
-          "tracked_time": 8
+          "tracked_time": 8,
+          "day": "poniedziałek"
         },
         {
           "description": "fancy todo",
-          "tracked_time": 8
+          "tracked_time": 8,
+          "day": "wtorek"
         },
         {
           "description": "fancy todo",
-          "tracked_time": 8
+          "tracked_time": 8,
+          "day": "środa"
         },
         {
           "description": "fancy todo",
-          "tracked_time": 8
+          "tracked_time": 8,
+          "day": "czwartek"
         },
         {
           "description": "fancy todo",
-          "tracked_time": 8
+          "tracked_time": 8,
+          "day": "piątek"
         }
       ]
     },

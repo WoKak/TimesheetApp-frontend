@@ -14,42 +14,56 @@ declare var $: any;
 
 export class AppMyReports {
 
-  timesheet: any;
-  weekdays: string[] = [" ", "poniedziałek", "wtorek", "środa", "czwartek", "piątek"];
+  days: string[] = ['poniedziałek', 'wtorek', 'środa', 'czwartek', 'piątek'];
+  tasks: string[] = ['todo1', 'todo2', 'todo3'];
+  model: any = {};
 
   constructor(private backendService: BackendService, private router: Router) {
-    this.fetchTimesheet();
+
+    this.fetchTasksForEmployee();
+    let result = this.getWeekNumber(new Date());
+    this.model.week = result[1];
   }
 
-  fetchTimesheet() {
+  fetchTasksForEmployee() {
 
-    this.backendService.fetchTimesheetByEmployee(14, 2008).subscribe(
+    this.backendService.fetchTasksForEmployee().subscribe(
       data => {
-        this.timesheet = data;
+        this.tasks = data;
       }
     );
   }
 
-  fetchPrevTimesheet() {
+  fetchReport() {
 
     let result = this.getWeekNumber(new Date());
+    let year = result[0];
 
-    this.backendService.fetchTimesheetByEmployee(this.timesheet.week - 1, result[0]).subscribe(
+    this.backendService.fetchWeeklyReportForTask(this.model.week, this.getSelectedTask(), year).subscribe(
       data => {
-        this.timesheet = data;
+        this.model.tracked = data.tracked;
+        this.model.status = data.status;
       }
     );
   }
 
-  fetchNextTimesheet() {
-
-    let result = this.getWeekNumber(new Date());
-
-    this.backendService.fetchTimesheetByEmployee(this.timesheet.week - (-1), result[0]).subscribe(
-      data => {
-        this.timesheet = data;
-      }
+  sendReport() {
+    this.backendService.reportWeeklyReportForTask(this.model.week, this.getSelectedTask(), this.model.tracked).subscribe(
+      data => {}
     );
+  }
+
+  getSelectedTask() {
+
+    return $('#task option:selected').text();
+  }
+
+  decreaseWeek() {
+    this.model.week--;
+  }
+
+  increaseWeek() {
+    this.model.week++;
   }
 
   getWeekNumber(d) {
@@ -62,53 +76,8 @@ export class AppMyReports {
     // Get first day of year
     let yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
     // Calculate full weeks to nearest Thursday
-    let weekNo = Math.ceil(( ( (d.valueOf() - yearStart.valueOf()) / 86400000) + 1) / 7);
+    let weekNo = Math.ceil((((d.valueOf() - yearStart.valueOf()) / 86400000) + 1) / 7);
     // Return array of year and week number
     return [d.getUTCFullYear(), weekNo];
-  }
-
-  save() {
-
-    let trackList = new Array();
-
-    $(document).ready(function () {
-
-      $(".tracked_time").each(function () {
-        let tmp = new Track();
-        tmp.setTimeTracked($(this).val());
-        trackList.push(tmp);
-      });
-
-      let i = 0;
-      $(".description").each(function () {
-        trackList[i].setDescription($(this).val());
-        i++;
-      });
-    });
-
-    this.backendService.saveTimesheet(trackList, this.timesheet).subscribe(
-      data => {
-        console.log("Timesheet saved");
-        this.router.navigate(['/main']);
-      }
-    );
-  }
-}
-
-class Track {
-  private description: string;
-  private timeTracked: number;
-
-  constructor() {
-    this.description = "";
-    this.timeTracked = 0;
-  }
-
-  setDescription(value: string) {
-    this.description = value;
-  }
-
-  setTimeTracked(value: number) {
-    this.timeTracked = value;
   }
 }
