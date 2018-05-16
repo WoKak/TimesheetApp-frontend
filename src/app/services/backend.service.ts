@@ -94,7 +94,7 @@ export class BackendService {
       .set('Access-Control-Allow-Origin', 'https://localhost:4200')
       .set('Token', this.token);
 
-    let url = 'https://localhost:5000/task/fetch-tasks/' + this.currentUser;
+    let url = 'https://localhost:5000/task/employee/fetch-tasks/' + this.currentUser;
 
     return this.http.get(url, {headers: httpHeaders}).map(
       data => {
@@ -183,7 +183,7 @@ export class BackendService {
       .set('Token', this.token);
 
     return this.http.get(
-      'https://localhost:5000/task/fetch-tasks/' + this.currentUser,
+      'https://localhost:5000/task/employer/fetch-tasks/' + this.currentUser,
       {headers: httpHeaders}
     ).map(
       data => {
@@ -267,7 +267,7 @@ export class BackendService {
   }
 
   //NEW
-  reportWeeklyReportForTask(week: any, selectedTask: any, tracked: any) {
+  reportWeeklyReportForTask(week: any, year: any, selectedTask: any, tracked: any) {
 
     let httpHeaders = new HttpHeaders()
       .set('Access-Control-Allow-Origin', 'https://localhost:4200')
@@ -277,7 +277,7 @@ export class BackendService {
 
     return this.http.post(
       url,
-      {task_descriptions: tracked, week: week, selected_task: selectedTask, worker: this.currentUser},
+      {task_descriptions: tracked, week: week, year: year, selected_task: selectedTask, worker: this.currentUser},
       {headers: httpHeaders}
     ).map(
       data => {}

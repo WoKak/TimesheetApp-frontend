@@ -28,7 +28,7 @@ export class AppMyReports {
 
     this.backendService.fetchTasksByEmployee().subscribe(
       data => {
-        this.tasks = data;
+        this.tasks = data.tasks;
       }
     );
   }
@@ -47,7 +47,11 @@ export class AppMyReports {
   }
 
   sendReport() {
-    this.backendService.reportWeeklyReportForTask(this.model.week, this.getSelectedTask(), this.model.tracked).subscribe(
+
+    let result = this.getWeekNumber(new Date());
+    let year = result[0];
+
+    this.backendService.reportWeeklyReportForTask(this.model.week, year, this.getSelectedTask(), this.model.tracked).subscribe(
       data => {}
     );
   }

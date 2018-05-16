@@ -25,7 +25,7 @@ export class AppAssignTask {
 
     this.backendService.fetchTasksByEmployer().subscribe(
       data => {
-        this.tasks = data;
+        this.tasks = data.tasks;
       }
     );
   }
@@ -49,7 +49,7 @@ export class AppAssignTask {
   }
 
   getSelectedTask() {
-
-    return $('#task option:selected').text();
+    let selected = $('#task option:selected').text();
+    return selected.substring(selected.indexOf(". ") + 2);
   }
 }
