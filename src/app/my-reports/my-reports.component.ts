@@ -14,7 +14,7 @@ declare var $: any;
 
 export class AppMyReports {
 
-  tasks: string[] = ['todo1', 'todo2', 'todo3'];
+  tasks: string[];
   model: any = {};
 
   constructor(private backendService: BackendService, private router: Router) {

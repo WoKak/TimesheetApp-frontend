@@ -39,12 +39,17 @@
     </form>
   </div>
   <div class="col">
-    <p>Status: {{this.model.status}}</p>
+    <div class="p-3 mb-2 bg-info text-white">
+      <p class="h4 font-weight-bold">Status: {{this.model.status}}</p>
+    </div>
     <form>
       <div *ngFor="let track of model.tracked" class="form-group">
-        <p>{{track.day}}:</p>
-        <input type="number" [(ngModel)]="track.trackedTime" name="trackedTime" placeholder="czas" class="form-control">
-        <input type="text" [(ngModel)]="track.description" name="description" placeholder="opis" class="form-control">
+        <p class="h4 font-weight-bold">{{track.day}}:</p>
+        <p class="h6 font-italic">Zapisany czas: {{track.trackedTime}}, Opis: {{track.description}}</p>
+        <p class="h6">Edycja:</p>
+        <input type="number" [(ngModel)]="track.trackedTime" placeholder="" name="trackedTime" class="form-control">
+        <input type="text" [(ngModel)]="track.description" placeholder="nowy opis" name="description"
+               class="form-control">
       </div>
       <input type="submit" value="Wyślij raport" class="btn btn-info" (click)="sendReport()"/>
     </form>
