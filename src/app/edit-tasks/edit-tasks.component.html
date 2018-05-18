@@ -1,0 +1,22 @@
+<app-main-page></app-main-page>
+<br/>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <select class="form-control" id="task">
+        <option *ngFor="let task of tasks">{{task.id + ". " + task.name}}</option>
+      </select>
+      <input type="submit" value="Wyświetl szczegóły" class="btn btn-info" (click)="fetchDetails()"/>
+    </div>
+    <div class="col">
+      <input type="text" [(ngModel)]="model.time" name="time" placeholder="czas" class="form-control">
+      <input type="text" [(ngModel)]="model.worker" name="worker" placeholder="pracownik" class="form-control">
+      <input type="submit" value="Zapisz zmiany" class="btn btn-info" (click)="updateDetails()"/>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-info btn-block" [routerLink]="['/add-task']">Dodaj zadanie</button>
+      <br/>
+      <button type="button" class="btn btn-outline-info btn-block" [routerLink]="['/employees-reports']">Przejdź do raportów</button>
+    </div>
+  </div>
+</div>

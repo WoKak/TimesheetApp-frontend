@@ -1,21 +1,21 @@
-import {AppMainpage} from './mainpage';
 import {Routes, RouterModule} from "@angular/router";
-import {AuthGuard} from "./guard";
-import {AppLogout} from "./logout";
-import {AppLogin} from "./login";
-import {AppAssignTask} from './assign-tasks';
-import {AppEmployeesReports} from './employees-reports';
-import {AppMyReports} from './my-reports';
-import {AppAddTask} from './add-task';
+import {MainPageComponent} from './main-page/main-page.component';
+import {LoginPageComponent} from './login-page/login-page.component';
+import {LogoutPageComponent} from './logout-page/logout-page.component';
+import {EmployeeTimesheetsComponent} from './employee-timesheets/employee-timesheets.component';
+import {EmployeesTimesheetsComponent} from './employees-timesheets/employees-timesheets.component';
+import {EditTasksComponent} from './edit-tasks/edit-tasks.component';
+import {NewTaskFormComponent} from './new-task-form/new-task-form.component';
+import {AuthGuard} from './auth.guard';
 
 const appRoutes: Routes = [
-  {path: 'main', component: AppMainpage},
-  {path: 'login', component: AppLogin},
-  {path: 'logout', component: AppLogout},
-  {path: 'my-reports', component: AppMyReports, canActivate: [AuthGuard]},
-  {path: 'employees-reports', component: AppEmployeesReports, canActivate: [AuthGuard]},
-  {path: 'assign-tasks', component: AppAssignTask, canActivate: [AuthGuard]},
-  {path: 'add-task', component: AppAddTask, canActivate: [AuthGuard]},
+  {path: 'main', component: MainPageComponent},
+  {path: 'login', component: LoginPageComponent},
+  {path: 'logout', component: LogoutPageComponent},
+  {path: 'my-reports', component: EmployeeTimesheetsComponent, canActivate: [AuthGuard]},
+  {path: 'employees-reports', component: EmployeesTimesheetsComponent, canActivate: [AuthGuard]},
+  {path: 'assign-tasks', component: EditTasksComponent, canActivate: [AuthGuard]},
+  {path: 'add-task', component: NewTaskFormComponent, canActivate: [AuthGuard]},
 
   {path: '**', redirectTo: 'login'}
 ];
