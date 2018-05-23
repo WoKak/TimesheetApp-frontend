@@ -30,7 +30,7 @@ export class EmployeesTimesheetsComponent implements OnInit {
     let worker = this.getSelectedWorker();
 
     if (worker === '') {
-      worker = "mlody";
+      worker = 'dlewnadowski';
     }
 
     this.backendService.fetchTimesheetByEmployer(result[1], result[0], worker).subscribe(
